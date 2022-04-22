@@ -1,7 +1,12 @@
 from logging import PlaceHolder
+from turtle import width
 import streamlit as st
 import pandas as pd
 import numpy as np
+
+from PIL import Image
+image = 'https://storage.cloud.google.com/get-cooking/image.jpeg'
+st.image(image, caption='', width=700)
 
 st.title('Get Cooking')
 st.write('An ML powered app!')
