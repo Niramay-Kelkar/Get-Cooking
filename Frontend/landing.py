@@ -3,7 +3,6 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import requests
-import streamlit as st
 import streamlit_authenticator as stauth
 from PIL import Image
 
@@ -35,17 +34,17 @@ if authentication_status:
     st.write('The current recommendations is for ', title)
    
     if st.button('Submit'):
-        # res = requests.get(f"http://127.0.0.1:8000/{title}")
-        # output = pd.read_csv(res)
-        # print(output)
-        # out = output.get("message")
-        df = pd.read_csv('https://storage.googleapis.com/get-cooking/dataset/RAW_recipes.csv')
+        res = requests.get(f"http://127.0.0.1:8000/{title}")
+        output = pd.read_csv(res)
+        print(output)
+        out = output.get("message")
+        # df = pd.read_csv('https://storage.googleapis.com/get-cooking/dataset/RAW_recipes.csv')
         
         st.write("Success")
-        sample_data = df.head()
-        st.dataframe(sample_data)
+        # sample_data = df.head()
+        # st.dataframe(sample_data)
         #     st.write("Success")
-        #st.write('The current recommendations is for ', out)
+        st.write('The current recommendations is for ', out)
 
 elif authentication_status == False:
     st.error('Username/password is incorrect')
