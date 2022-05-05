@@ -55,7 +55,7 @@ def search_ingredients(subs , n_rec):
   indices_list = indices.tolist()
   #print(indices_list)
 
-  n_rec=5
+  
   final_indeces = indices_list[0:n_rec] #n recommendations
 
   final_df = df.iloc[final_indeces]
@@ -63,4 +63,35 @@ def search_ingredients(subs , n_rec):
   final_df = final_df.iloc[:,:3]
   print("Sending dataframe---------------------------->")
   return final_df
+
+
+def search_collections(collection):
+  #print(os.getcwd())
+  #x = Path('./')
+  #print(list(filter(lambda y:y.is_file(), x.iterdir())))
+  df_2= pd.read_csv("https://storage.googleapis.com/us-east1-airflowenv-ce25265b-bucket/dags/df_parsed.csv")
+  df2_2=pd.DataFrame()
+  
+  if collection == "Seafood":
+    df2_2 = df_2[df_2['recipe_urls'].str.contains("seafood")==True]
+
+  if collection == "Soup":
+    df2_2 = df_2[df_2['recipe_urls'].str.contains("soup")==True]
+
+  if collection == "Curry":
+    df2_2 = df_2[df_2['recipe_urls'].str.contains("curry")==True]
+
+  if collection == "Pasta":
+    df2_2 = df_2[df_2['recipe_urls'].str.contains("pasta")==True]
+
+  if collection == "Salad":
+    df2_2 = df_2[df_2['recipe_urls'].str.contains("salad")==True]
+
+  if collection == "Chinese":
+    df2_2 = df_2[df_2['recipe_urls'].str.contains("chinese")==True]
+  #print(df2_2)
+
+
+  print("Sending collections---------------------------->")
+  return df2_2.iloc[:,:3]
 
