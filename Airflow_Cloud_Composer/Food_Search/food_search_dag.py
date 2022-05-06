@@ -36,7 +36,7 @@ default_dag_args = {
 
 with models.DAG(
         'food_search_dag',
-        schedule_interval='0 0 * * *',  #daily
+        schedule_interval='*/5 * * * *',  #daily
         default_args=default_dag_args) as dag:
     def food_search():
     #print("Hello World")
@@ -47,8 +47,8 @@ with models.DAG(
         p= "/home/airflow/gcs/dags"
         print(os.listdir(p))
         print("Doneeeeeeeeeeeeeee------------------------------------")
-        #recipe.to_csv (r'/home/airflow/gcs/dags/input/export_dataframe.csv', index = False, header=True)
-        recipe.to_csv (r'https://storage.cloud.google.com/us-east1-airflowenv-ce25265b-bucket/dags/input/export_dataframe.csv', index = False, header=True)
+        recipe.to_csv (r'/home/airflow/gcs/dags/input/export_dataframe.csv', index = False, header=True)
+        #recipe.to_csv (r'https://storage.cloud.google.com/us-east1-airflowenv-ce25265b-bucket/dags/input/export_dataframe.csv', index = False, header=True)
         
         print("Saved---------")
         print(os.listdir("/home/airflow/gcs/dags/"))
